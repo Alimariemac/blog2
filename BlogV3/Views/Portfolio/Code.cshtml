@@ -1,0 +1,244 @@
+﻿@{
+    ViewBag.Title = "CODE";
+}
+<div class="container-fluid content">
+
+    <div class="contain">
+        <div id="tag" class="container-fluid">
+            <h2>Cart</h2>
+        </div>
+        <div class="row" style="margin:0;">
+            <div class="col-md-offset-1 col-md-10">
+                <div class="col-sm-4">
+                    <div class="col-sm-offset-1 col-sm-1">
+                        <a href="http://aliciashoppingcart.azurewebsites.net/" target="_blank" class="code-link"><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 5em !important; padding-top:.75em;"></i></a>
+                    </div>
+                </div>
+                <div class="col-sm-8 design" aria-hidden="true">
+                    <p>
+                        <strong>Challenge: </strong><br>Create a working shopping cart.<br>
+                        <strong>Profile: </strong><br>Created a working shopping cart and data-base with MVC.Net, C# and
+                        SQL. Deliverables did not include payment implementation or pagnation. Click on the icon to go to the program!
+                    </p>
+                </div>
+            </div>
+        </div><!--row-->
+    </div><!--contain-->
+    <hr>
+    <div class="contain">
+        <div id="tag" class="container-fluid">
+            <h2>JS</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <div class="col-sm-4">
+                    <div class="col-sm-offset-1 col-sm-1">
+                        <a data-toggle="modal" data-target="#myModal3" class="code-link"><i class="fa fa-code" aria-hidden="true" style="font-size: 5em !important; padding-top:.75em;"></i></a>
+                    </div>
+
+                </div>
+                <div class="col-sm-8 design">
+                    <p>
+                        <strong>Challenge: </strong><br>Solve basic JS problems.<br>
+                        <strong>Profile: </strong><br>5 basic javascript problems solved in modals for you
+                        to have some fun with! Click on the icon to play around!
+                    </p>
+                </div>
+            </div>
+        </div><!--row-->
+    </div><!--contain-->
+    <hr>
+    <div class="modal fade" id="myModal3" data-modal-index="1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Javascript Exercises</h4>
+                </div>
+                <div class="modal-body">
+                    <button class="btn btn-default" data-toggle="modal" data-target="#test-modal-2">5 numbers</button>
+                    <button class="btn btn-default" data-toggle="modal" data-target="#test-modal-3">Factorial</button>
+                    <button class="btn btn-default" data-toggle="modal" data-target="#test-modal-4">FizzBuzz</button>
+                    <button class="btn btn-default" data-toggle="modal" data-target="#test-modal-5">Palindrome</button>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <div class="modal fade" id="test-modal-2" data-modal-index="2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">5 Numbers</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Enter 5 numbers and watch the magic!</p>
+                    <input type="number" id="A" min="0" />
+                    <input type="number" id="B" min="0" />
+                    <input type="number" id="C" min="0" />
+                    <input type="number" id="D" min="0" />
+                    <input type="number" id="E" min="0" />
+                    <button type="button" class="btn btn-default" id="submit1">Calculate</button>
+                    <br>
+                    <p id="answer1">What is the lowest number?<p>
+                    <p id="answer2">How about the highest?<p>
+                    <p id="answer3">Tell me the mean.<p>
+                    <p id="answer4">What is the sum?<p>
+                    <p id="answer5">How about the product?<p>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="test-modal-3" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Factorial</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Input a number and calculate the factorial! What's a factorial? Check <a href="https://en.wikipedia.org/wiki/Factorial">here!</a></p>
+                    <input type="number" id="J" min="0" />
+                    <button type="button" class="btn btn-default" id="submit6">calculate</button>
+                    <br>
+                    <p id="factorial">The factorial is...<p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="test-modal-4" data-modal-index="2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Fizz-Buzz</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Enter 2 numbers. For every multiple of the first, "Fizz" will return. For every multiple of the second "Buzz" will return. If the number is a multiple of both "FizzBuzz" will return!</p>
+                    <input type="number" id="F" min="0" max="100" />
+                    <input type="number" id="G" min="0" max="100" />
+                    <button type="button" class="btn btn-default" id="submit3">Calculate</button>
+                    <br>
+                    <p id="FizzBuzz"><p>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="test-modal-5" data-modal-index="2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" onclick="myFunction()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Is it a Palindrome?</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Put in a word to see if it's a palindrome (a word that is written the same backwards AND forwards)!</p>
+                    <input type="text" id="string" />
+                    <button type="button" class="btn btn-default" id="submit4">Check</button>
+                    <br>
+                    <p id="palindrome">Answer 1<p>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+
+<script>
+        $(document).ready(function () {
+
+
+            $("#submit6").click(function () {
+                var j = parseInt($('#J').val());
+                var factorial = j;
+                for (i = (j - 1) ; i > 0; i--) {
+                    factorial = (factorial * i);
+                }
+
+                $("#factorial").replaceWith(factorial);
+            });
+
+            $("#submit1").click(function () {
+
+                var a = parseInt($('#A').val());
+                var b = parseInt($('#B').val());
+                var c = parseInt($('#C').val());
+                var d = parseInt($('#D').val());
+                var e = parseInt($('#E').val());
+                var numbers = [a, b, c, d, e]
+                function compareNumbers(a, b) {
+                    return a - b;
+                }
+
+                var sorted = numbers.sort(compareNumbers)
+                var sum = a + b + c + d + e
+                var mean = sum / 5
+                var product = a * b * c * d * e
+
+                $("#answer1").replaceWith("The lowest number is " + sorted[0])
+                $("#answer2").replaceWith("The highest number is " + sorted[4])
+                $("#answer3").replaceWith("The mean is " + mean)
+                $("#answer4").replaceWith("The sum is " + sum)
+                $("#answer5").replaceWith("The product is " + product)
+            });
+
+            $("#submit4").click(function () {
+                var h = $("#string").val()
+
+                var stringA = h.toLowerCase().replace(/[^A-Za-z0-9]/g, "");
+                var stringB = stringA.split("").reverse().join("");
+
+                var result = []
+                if (stringA === stringB) {
+                    result = "Yes! It is a palindrome!";
+                }
+                else {
+                    result = "Sorry! Not a palindrome!";
+                }
+
+
+                $("#palindrome").replaceWith(result);
+
+            });
+
+
+            $("#submit3").click(function () {
+                var f = parseInt($('#F').val());
+                var g = parseInt($('#G').val());
+                var result = []
+
+                for (i = 1; i <= 100; i++) {
+                    if (i % f == 0 && i % g == 0) {
+                        result += ("Fizz Buzz" + "<br>");
+                    }
+
+                    else if (i % f == 0) {
+                        result += ("Fizz" + "<br>");
+                    }
+
+                    else if (i % g == 0) {
+                        result += ("Buzz" + "<br>");
+                    }
+
+                    else {
+                        result += (i + "<br>");
+                    }
+                }
+                $("#FizzBuzz").replaceWith(result);
+
+            });
+        });
+
+</script>
+
+
+

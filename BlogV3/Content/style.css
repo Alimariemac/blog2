@@ -1,0 +1,500 @@
+﻿body {
+    margin: auto;
+    background-color: white;
+
+}
+
+.overlaymenu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 600;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.code-link{
+  color: black !important;
+}
+
+.code-link:hover {
+  color: rgb(252,68,69) !important;
+  cursor: pointer;
+}
+
+.overlaymenu-content {
+    position: relative;
+    top: 10%;
+    width: 100%;
+    height:100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlaymenu a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    display: block;
+    transition: 0.3s;
+    color:black !important;
+}
+
+.overlaymenu a:hover, .overlay a:focus {
+    color: #6ba2d7 !important;
+}
+
+.overlaymenu .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+.content{
+  background-color: white;
+}
+.contain{
+  background-color: white;
+  padding:10px;
+  position: relative;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.tag-holder
+{
+position:relative;
+padding:10px;
+
+}
+
+img{
+  width: 100%;
+  object-fit: cover;
+}
+.contain-photo{
+  background-color: white;
+  padding:10px;
+  margin-left: 60px;
+  margin-right: 60px;
+  border: solid 1px #e2e4e8;
+}
+.line-up {
+    list-style:none !important;
+    display:inline-flex !important;
+    padding:0;
+
+}
+
+    .line-up li {
+    padding:5px;
+    
+    }
+.contain2{
+  background-color: white;
+  padding:10px;
+  position: relative;
+  margin-left: 50px;
+  margin-right: 50px;
+  border: solid 1px #e2e4e8;
+}
+.top {
+    background-image: url('../Images/floral.jpg');
+    background-color: white;
+    width: auto;
+    margin-left: 25px;
+    margin-right: 25px;
+    position: relative;
+    padding: 1.2em;
+}
+
+.top2{
+  background-image: url("../images/Vertices Pattern.svg");
+  background-color:#3feee6;
+  width: auto;
+  margin: 0 auto;
+  position: relative;
+  padding:1.2em;
+}
+
+#lightbox{
+  min-height:400px;
+  min-width:400px;
+}
+.top-inner{
+   padding-top:10%;
+   padding-bottom: 10%;
+   width: 75%;
+   height: auto;
+   margin: 0 auto;
+   position: relative;
+   background-color:rgba(255, 255, 255, .9);
+   border:solid 1px #e2e4e8;
+}
+
+
+#tag {
+    position:absolute;
+    width:310px;
+    height:70px;
+    top:50%;
+    background-color:white;
+    z-index:200;
+    left:-200px;
+    text-align:right;
+    padding:0;
+    padding-right:15px;
+    border: solid 1px #e2e4e8;
+}
+
+.grey {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.grey1 {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+.grey1:hover {
+  -webkit-filter: grayscale(0%);
+  -moz-filter: grayscale(0%);
+  -ms-filter: grayscale(0%);
+  filter: grayscale(0%);
+  transition: .5s ease
+}
+
+
+.menu-icon{
+  text-align: right;
+  margin-top: 1rem;
+  padding-left: 5px;
+  padding-right: 5px;
+  z-index:300;
+  border:none;
+  color:#212121;
+  font-size: 36px;
+}
+.menu{
+  float:right;
+  width:auto;
+  border:none;
+  background-color: transparent;
+  padding:10px;
+  position: relative;
+  margin-left: 50px;
+  margin-right: 50px;
+
+}
+
+/*.truncate {
+        white-space:nowrap;
+        text-overflow:ellipsis;
+        width:100%;
+        height:5em;
+        display:block;
+        overflow:hidden;
+
+}*/
+
+.affix {
+  top:0;
+}
+
+.glyphicon-chevron-down{
+  display:block;
+  margin:auto;
+  font-size:30px;
+  color:#BDBDBD;
+}
+.img-block{
+  height: 50%;
+  width:50%;
+}
+
+.jumbotron{
+  margin:0;
+  background-color: #f4f4f4;
+  background-image: url("../images/Vertices Pattern.svg") !important;
+  color:white;
+}
+
+.image {
+  width: 100%;
+  height:400px;
+  padding:0;
+}
+
+.design-image{
+  max-height:200px;
+  padding:0;
+  object-fit: contain;
+}
+.row{
+  margin:0;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(107,162,215, 0.7);
+  overflow: hidden;
+  width: 0;
+  height: 100%;
+  transition: .5s ease;
+
+}
+.over{
+  width:100%;
+  position:relative;
+}
+.over:hover .overlay {
+  width: 100%;
+}
+
+.text {
+  color: white;
+  font-size: 34px;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align:center;
+  
+}
+
+.contact-form {
+  padding-left: 10vw;
+  padding-top:10vh;
+  height:90%;
+}
+
+.thumb {
+    margin-bottom: 30px;
+}
+
+.design{
+  padding-top:20px;
+}
+
+h1{
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: uppercase;
+  /*font-size:4vw;*/
+
+}
+
+
+h2{
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+h3{
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+h4 {
+    font-family: "Open Sans", sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin:0;
+}
+h6 {
+    margin-top:0;
+}
+
+
+p{
+  font-family: "Nimbus Sans", sans-serif;
+  font-style: normal;
+  font-size:16px;
+  font-weight: 200;
+  text-align:left;
+}
+.wordwrap { 
+   white-space:inherit;      
+   word-wrap: break-word;      
+   word-break:break-word;
+}
+.header-image {
+    max-height:400px;
+    object-fit:contain;
+}
+.widget {
+    padding:15px;
+    margin-bottom:30px;
+    border: solid .5px #e2e4e8;
+
+}
+header {
+    padding: 40px;
+    padding-top:50px;
+    padding-bottom:10px;
+    margin:0px;
+}
+
+.header-text {
+    color:white;
+    margin:auto; 
+    margin-top:15px;
+    padding:5px;
+    line-height:14px;
+    text-align:center; 
+    background-color:#6ba2d7;
+    text-transform: uppercase;
+    max-width: 90px;
+
+    
+}
+.widget-text {
+    text-align: center;
+}
+
+.bottom-border {
+    border-bottom:1px solid #6ba2d7;
+}
+.small-font{
+    font-size:14px;
+}
+
+.social-media {
+    border: solid 1px #e2e4e8;
+    text-align:center;
+    
+}
+.corner {
+    margin:auto; 
+    text-align:center;
+}
+
+.corner i {
+        
+        padding-left:10px;
+        font-size:20px;    
+
+    }
+i {
+    font-size:24px !important;  
+}
+
+
+.Comments {
+    margin-top:10px;
+    border-bottom:dotted 1px #e2e4e8;
+}
+
+div.pagination-container {
+    text-align:center !important;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover,
+.pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover 
+{
+    color:#fff !important;
+    background-color:#6ba2d7 !important;
+    border-color: #6ba2d7 !important;
+}
+a {
+    color:#6ba2d7 !important;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+
+
+@media only screen and (max-width: 992px) {
+  #tag {
+    display:none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+    .contain {
+        padding: 15px;
+        margin: auto;
+    }
+}
+@media only screen and (max-width: 450px) {
+    
+  .image {
+    max-height:200px;
+  }
+  .container-fluid {
+    padding-left:0px;
+    padding-right:0px;
+  }
+  .menu-icon {
+    font-size: 20px;
+  }
+  .menu{
+    margin-left: 30px;
+    margin-right: 30px;
+    background: transparent;
+  }
+  .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(107,162,215,.8);
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  transition: .5s ease;
+  border: solid black 1.2px;
+
+}
+
+  .grey {
+  -webkit-filter: grayscale(0%);
+  -moz-filter: grayscale(0%);
+  -ms-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
+
+.grey1 {
+  -webkit-filter: grayscale(0%);
+  -moz-filter: grayscale(0%);
+  -ms-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
+  p{
+    font-size:13px;
+  }
+    h1 {
+        font-size:14px;
+    }
+    h6 {
+    font-size:13px
+    }
+
+    h4 {
+    font-size:13px
+    }
+    
+}
+

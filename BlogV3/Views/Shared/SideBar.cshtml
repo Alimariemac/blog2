@@ -1,0 +1,87 @@
+﻿
+<div class="col-md-3">
+    <div class="widget-text">
+        <h4><span class="bottom-border">About Me</span></h4>
+    </div>
+    <div class="widget container-fluid">
+        <img src="~/Images/aliciacolor.jpg" class="img-circle" style="max-width:150px; margin:auto; display:block">
+        <p class="small-font" style="margin-top:20px; text-align:center;">
+            Graphic designer, programmer and world traveler; I've been enamoured with the process of creating ever since I could hold a pencil.
+        <p>
+
+        <p style="text-align:center;">
+            <a href=@Url.Action("Index", "BlogPosts") class="btn btn-default">Blog</a>
+        </p>
+        <div style="text-align:center;"> @Html.Partial("_LoginPartial")</div>
+    </div>
+
+    <div class="widget container-fluid" style="height:100%">
+        <div class="col-md-4 social-media">
+            <a href="https://www.instagram.com/alimariemac/?hl=en" target="_blank"><i class="fa fa-instagram " aria-hidden="true"></i></a>
+        </div>
+        <div class="col-md-4 social-media">
+            <a href="https://github.com/Alimariemac" target="_blank"><i class="fa fa-github " aria-hidden="true"></i></a>
+        </div>
+        <div class="col-md-4 social-media">
+            <a href="https://twitter.com/AliMacCara" target="_blank"><i class="fa fa-twitter " aria-hidden="true"></i></a>
+        </div>
+        <div class="col-md-4 social-media">
+            <a href="https://www.linkedin.com/in/aliciamariemaccara/" target="_blank"><i class="fa fa-linkedin " aria-hidden="true"></i></a>
+        </div>
+        <div class="col-md-4 social-media">
+            <a href="mailto:AliciaMacCara%40gmail%2ecom" method="post" enctype="text/plain"><i class="fa fa-envelope-o " aria-hidden="true"></i></a>
+        </div>
+    </div>
+    <div class="widget-text">
+        <h4><span class="bottom-border">Search</span></h4>
+    </div>
+    <div class="widget container-fluid">
+        @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Post, new { @class = "form" }))
+        {
+            <input type="text" class="form-control" placeholder="Search Posts" name="searchStr" id="searchStr" style="margin-bottom:5px" />
+            <button class="btn btn-default" style="color:#6ba2d7;float:right;" type="submit">Search</button>
+        }
+    </div>
+    <div class="widget-text">
+        <h4><span class="bottom-border">Categories</span></h4>
+    </div>
+    <div class="widget container-fluid">
+        <div class="row">
+            <p style="text-align:center">
+                @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Post, new { @class = "form" }))
+            {
+                <input type="hidden" class="form-control" name="searchStr" id="searchStr" style="margin-bottom:5px" value="Coding" />
+                <button class="btn btn-default" style="color:#6ba2d7;width:100%;" type="submit">Coding</button>
+            }
+        </p>
+    </div>
+    <div class="row">
+        <p style="text-align:center">
+            @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Post, new { @class = "form" }))
+            {
+            <input type="hidden" class="form-control" name="searchStr" id="searchStr" style="margin-bottom:5px" value="Design" />
+            <button class="btn btn-default" style="color:#6ba2d7;width:100%;;" type="submit">Design</button>
+        }
+    </p>
+</div>
+<div class="row">
+    <p style="text-align:center">
+        @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Post, new { @class = "form" }))
+            {
+        <input type="hidden" class="form-control" name="searchStr" id="searchStr" style="margin-bottom:5px" value="Travel" />
+            <button class="btn btn-default" style="color:#6ba2d7;width:100%;" type="submit">Travel</button>
+    }
+</p>
+</div>
+<div class="row">
+    <p style="text-align:center">
+        @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Post, new { @class = "form" }))
+            {
+        <input type="hidden" class="form-control" name="searchStr" id="searchStr" style="margin-bottom:5px" value="Food" />
+            <button class="btn btn-default" style="color:#6ba2d7;width:100%" type="submit">Food</button>
+    }
+</p>
+</div>
+</div>
+
+</div>

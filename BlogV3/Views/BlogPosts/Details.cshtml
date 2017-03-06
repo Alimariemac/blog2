@@ -1,0 +1,156 @@
+﻿@model BlogV3.Models.BlogPost
+
+@*<h2>Details</h2>
+
+<div>
+    <h4>BlogPost</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Updated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Updated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Slug)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Slug)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Body)
+        </dd>
+
+        <dt>
+
+        </dt>
+        @Html.DisplayNameFor(model => model.MediaURL)
+        <dd>
+            <img src="@Url.Content(Model.MediaURL)" class="img-responsive" style="width:200px;">
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Published)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Published)
+        </dd>
+
+    </dl>
+</div>
+@using (Html.BeginForm("Create", "Comments", FormMethod.Post))
+
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="PostId" value="@Model.Id" />
+    <textarea name="body"></textarea>
+    <input type="submit" value="Add Comment" />
+}
+
+@foreach (var comment in Model.Comments)
+{
+    <ul>
+        <li>Posted by @Html.DisplayFor(modelItem => comment.Author.DisplayName) at @comment.Created</li>
+        <li>@comment.Body</li>
+    </ul>
+
+}
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+*@
+
+@{
+    ViewBag.Title = "POST";
+}
+<div class="container-fluid content">
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })<text>&nbsp;</text>
+        @Html.ActionLink("Delete", "Delete", new { id = Model.Id })<text>&nbsp;</text>
+        @Html.ActionLink("Comment List", "Index", "Comments")
+    }
+    <div style="padding-top:20px;">
+        <div class="row" style="padding-left:10%; padding-right:10%;">
+            <div class="col-md-9" style="margin-bottom:50px;">
+                <h1 style="text-align:center; margin-bottom:10px;">@Model.Title</h1>
+                <h6 style="text-align:center;  margin-bottom:50px"><em>@Model.Created.ToString("MMM dd yyyy")</em></h6>
+
+                <img src="@Url.Content(Model.MediaURL)" class="header-image img-responsive" style="margin-bottom:20px;">
+
+                <p style="text-align:right; margin-bottom:20px;">By - <em>Alicia MacCara</em></p>
+                @Html.Raw(Model.Body)
+
+
+                <!--Comments-->
+
+                @foreach (var comment in Model.Comments)
+            { <div class="row" style="margin-top:15px;">
+                    <div class="Comments">
+                        <div class="col-sm-3">
+                            <p class="small-font">Posted by @Html.DisplayFor(modelItem => comment.Author.DisplayName)</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="small-font">
+                                @comment.Body
+                                <br>
+                                -@comment.Created.ToString("MMM dd yyyy")
+                            </p>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                using (Html.BeginForm("Delete", "Comments", new { id = comment.Id }, FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-default" style="float:right;">Delete</button>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+
+
+
+                }
+                @using (Html.BeginForm("Create", "Comments", FormMethod.Post))
+
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="PostId" value="@Model.Id" />
+                    <textarea name="body" style="width:100%;border:solid .5px #333;" rows="5"></textarea>
+                    <button type="submit" class="btn btn-default" style="float:right; margin-top:15px;">Submit Comment</button>
+                }
+                <div style="float:left;"> @Html.ActionLink("Back to Post List", "Index")</div>
+            </div>
+
+            @Html.Partial("SideBar")
+        </div>
+    </div>
+</div>

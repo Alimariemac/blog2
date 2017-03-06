@@ -1,0 +1,118 @@
+﻿@model IEnumerable<BlogV3.Models.BlogPost>
+@using PagedList;
+@using PagedList.Mvc;
+@*@{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Updated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Slug)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Body)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MediaURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Published)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Updated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Slug)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MediaURL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Published)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
+
+    </table>*@
+@{
+    ViewBag.Title = "BLOG";
+}
+<div class="container-fluid content">
+    @if (User.IsInRole("Admin"))
+            {@Html.ActionLink("Create New", "Create")}
+    <div class="contain" style="padding-top:20px;">
+        <div class="row" style="padding-left:10%; padding-right:10%;">
+            <div class="col-md-9" style="margin-bottom:50px;">
+                <div class="row">
+                    @foreach (var item in Model)
+            {
+                        <div class="col-md-6 container-fluid">
+
+                            <div class="thumbnail" style="height:35em; border-radius:0; ">
+                                <div class="row wordwrap" style="height:28em; margin-bottom:2em; overflow:hidden;">
+                                    <img src=@Url.Content(item.MediaURL) class="img-responsive" alt="" style="height:40%;">
+                                    <div class="caption">
+                                        <h3 style="padding-bottom:0; padding-top:0; text-align:center">@item.Title</h3>
+                                        <h6 style="padding-top:0; margin-top:0; text-align:center">@item.Created.ToString("MMM dd yyyy")</h6>
+                                        <hr />
+                                        <p style="margin:20px;">@Html.Raw(item.Body)</p>
+                                    </div>
+                                </div>
+                                <p style="text-align:center;">
+                                    <a href=@Url.Action("Details", new { slug = item.Slug }) class="btn btn-default">Read More</a>
+                                </p>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })  <text>&nbsp;</text>
+                                    @Html.ActionLink("Details", "Details", new { slug = item.Slug })<text>&nbsp;</text>
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })<text>&nbsp;</text>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                   @* @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
+                </div>
+            </div>
+            @Html.Partial("SideBar")
+
+        </div>
+    </div>
+
+
+</div>

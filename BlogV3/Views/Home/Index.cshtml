@@ -1,0 +1,113 @@
+﻿
+<div class="container-fluid content">
+    <div class="contain">
+        <div id="tag" class="container-fluid">
+            <h2>Welcome!</h2>
+        </div>
+        <div class="top">
+            <div class="top-inner">
+
+                <a href=@Url.Action("Index", "Home")><img src="~/Images/brand2.png" class="img-responsive" style="max-width:250px; margin:auto;" /></a>
+                <h2 style="text-align:center;">Alicia Marie MacCara</h2>
+                <h4 style="text-align:center;">Design, Programming, Marketing</h4>
+
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="contain">
+        <div class="row">
+            <div class="col-md-9" style="padding-top:12px;">
+                <div class="tag-holder">
+                    <div id="tag" class="container-fluid">
+                        <h2>Portfolio</h2>
+                    </div>
+                    <div class="row">
+                        <a href=@Url.Action("Photo","Portfolio")>
+                            <div class="col-md-6" style="padding-right:0; padding-left:0; margin:0">
+                                <div class="row over" style="margin:0;">
+                                    <img src="~/Images/slide1.jpg" class="image  img-responsive">
+                                    <div class="overlay">
+                                        <div class="text"><h3>Photography </h3></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href=@Url.Action("design","Portfolio")>
+                            <div class="col-md-6" style="padding-right:0; padding-left:0; margin:0">
+
+                                <div class="row over" style="margin:0;">
+                                    <img src="~/Images/slide2.jpg" class="image img-responsive">
+                                    <div class="overlay">
+                                        <div class="text"><h3>Graphic Design </h3></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div><!--row-->
+                    <div class="row">
+                        <a href=@Url.Action("Code","Portfolio")>
+                            <div class="col-md-6" style="padding-right:0; padding-left:0; margin:0">
+                                <div class="row over" style="margin:0;">
+                                    <img src="~/Images/photo/photo5.jpg" class="image img-responsive">
+                                    <div class="overlay">
+                                        <div class="text"><h3>Code </h3></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="AliciaMacCaraResume.pdf" target="_blank">
+                            <div class="col-md-6" style="padding-right:0; padding-left:0; margin:0">
+
+                                <div class="row over" style="margin:0;">
+                                    <img src="~/Images/photo/photo12.jpg" class="image img-responsive">
+                                    <div class="overlay">
+                                        <div class="text"><h3>Resume </h3></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="text-align:center;"></span>
+                </div>
+                <br>
+
+                <div class="tag-holder" style="margin-bottom:50px;">
+                    <div id="tag" class="container-fluid">
+                        <h2>Say Hi!</h2>
+                    </div>
+                    <a name="contact"></a>
+                    <div class="row " style="border: solid 1px #e2e4e8; margin-bottom:50px;">
+
+                        <br>
+                        <div class="col-md-offset-2 col-md-8">
+                            <form action="mailto:AliciaMacCara%40gmail%2ecom" method="post" enctype="text/plain">
+                                <div class="form-group">
+                                    <p>Name:</p>
+                                    <input type="text" class="form-control" name="Name " placeholder="Jane Doe">
+                                </div>
+                                <div class="form-group">
+                                    <p>Email Address:</p>
+                                    <input type="text" class="form-control" name="Email " placeholder="JaneDoe@email.com">
+                                </div>
+                                <div class="form-group">
+                                    <p>Message:</p>
+                                    <textarea class="form-control" name="Message " placeholder="Hi there!" cols="100" rows="10"></textarea>
+                                </div>
+
+                                <button class="btn btn-default" type="submit" style="margin-bottom:20px; color:#6ba2d7">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @Html.Partial("SideBar")
+        </div>
+
+    </div>
+</div>

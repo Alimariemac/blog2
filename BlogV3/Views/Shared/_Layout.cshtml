@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Alicia MacCara</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.1.1/ekko-lightbox.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.1.1/ekko-lightbox.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/style.css" type="text/css" rel="stylesheet" media="all">
+    <link href="~/Content/PagedLists.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        @*  <div class="container-fluid">
+                <div class="row">
+                    <div style="text-align:center">@Html.Partial("_LoginPartial")</div>
+                </div>
+            </div>*@
+        <div id="myNav" class="overlaymenu">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlaymenu-content">
+                <a href=@Url.Action("Index", "Home")>Home</a>
+                <a href=@Url.Action("Photo", "Portfolio")>Photography</a>
+                <a href=@Url.Action("Design", "Portfolio")>Design</a>
+                <a href=@Url.Action("Code", "Portfolio")>Code</a>
+                <a href=@Url.Action("Index", "BlogPosts")>Blog</a>
+            </div>
+        </div>
+
+        <div class="menu">
+            <span class="menu-icon" style="cursor:pointer" onclick="openNav()"
+                  data-spy="affix">&#9776;</span>
+        </div>
+
+
+        @if (ViewBag.HideTitle == null)
+        { <header class="container-fluid">
+            <div class="row">
+                <div class="col-sm-offset-4 col-sm-4">
+                    <div class="row">
+                        <a href=@Url.Action("Index", "Home")><img src="~/Images/brand2.png" class="img-responsive" style="max-width:150px; margin:auto;" /></a>
+                    </div>
+                    <div class="row">
+                        <p class="header-text">@ViewBag.Title</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <hr>}
+
+
+        @RenderBody()
+        <hr />
+        <footer>
+            <div class="row container-fluid">
+                <div style="float:left;">
+                    <p>&copy; @DateTime.Now.Year - Alicia MacCara</p>
+                </div>
+                <div class="corner" style="float:right;">
+                    <a href="https://github.com/Alimariemac" target="_blank">
+                        <i class="fa fa-github " aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.instagram.com/alimariemac/?hl=en" target="_blank">
+                        <i class="fa fa-instagram " aria-hidden="true"></i>
+                    </a>
+                    <a href="https://twitter.com/AliMacCara" target="_blank">
+                        <i class="fa fa-twitter " aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/aliciamariemaccara/" target="_blank">
+                        <i class="fa fa-linkedin " aria-hidden="true"></i>
+                    </a>
+                    <a href="mailto:AliciaMacCara%40gmail%2ecom" method="post" enctype="text/plain">
+                        <i class="fa fa-envelope-o " aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <script>
+    function openNav() {
+    document.getElementById("myNav").style.width = "100%";
+    }
+
+    function closeNav() {
+    document.getElementById("myNav").style.width = "0%";
+    }
+    </script>
+    <script>
+$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox();
+});
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
