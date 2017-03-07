@@ -36,7 +36,7 @@
         <h4><span class="bottom-border">Search</span></h4>
     </div>
     <div class="widget container-fluid">
-        @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Post, new { @class = "form" }))
+        @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Get, htmlAttributes: new { @class = "form" }))
         {
             <input type="text" class="form-control" placeholder="Search Posts" name="searchStr" id="searchStr" style="margin-bottom:5px" />
             <button class="btn btn-default" style="color:#6ba2d7;float:right;" type="submit">Search</button>
@@ -48,7 +48,7 @@
     <div class="widget container-fluid">
         <div class="row">
             <p style="text-align:center">
-                @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Post, new { @class = "form" }))
+                @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Get, htmlAttributes: new { @class = "form" }))
             {
                 <input type="hidden" class="form-control" name="searchStr" id="searchStr" style="margin-bottom:5px" value="Coding" />
                 <button class="btn btn-default" style="color:#6ba2d7;width:100%;" type="submit">Coding</button>
@@ -57,7 +57,7 @@
     </div>
     <div class="row">
         <p style="text-align:center">
-            @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Post, new { @class = "form" }))
+           @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Get, htmlAttributes: new { @class = "form" }))
             {
             <input type="hidden" class="form-control" name="searchStr" id="searchStr" style="margin-bottom:5px" value="Design" />
             <button class="btn btn-default" style="color:#6ba2d7;width:100%;;" type="submit">Design</button>
@@ -66,7 +66,7 @@
 </div>
 <div class="row">
     <p style="text-align:center">
-        @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Post, new { @class = "form" }))
+        @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Get, htmlAttributes: new { @class = "form" }))
             {
         <input type="hidden" class="form-control" name="searchStr" id="searchStr" style="margin-bottom:5px" value="Travel" />
             <button class="btn btn-default" style="color:#6ba2d7;width:100%;" type="submit">Travel</button>
@@ -76,10 +76,10 @@
 <div class="row">
     <p style="text-align:center">
         @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Post, new { @class = "form" }))
-            {
+        {
         <input type="hidden" class="form-control" name="searchStr" id="searchStr" style="margin-bottom:5px" value="Food" />
             <button class="btn btn-default" style="color:#6ba2d7;width:100%" type="submit">Food</button>
-    }
+        }
 </p>
 </div>
 </div>

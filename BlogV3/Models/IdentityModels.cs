@@ -34,10 +34,7 @@ namespace BlogV3.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<BlogV3.Models.BlogPost> BlogPosts { get; set; }
-
-        public System.Data.Entity.DbSet<BlogV3.Models.Comment> Comments { get; set; }
-
-        public System.Data.Entity.DbSet<BlogV3.Models.ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<BlogPost> Posts { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }

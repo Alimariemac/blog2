@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BlogV3.Models.BlogPost>
+﻿@model IPagedList<BlogV3.Models.BlogPost>
 @using PagedList;
 @using PagedList.Mvc;
 @*@{
@@ -82,11 +82,11 @@
             {
                         <div class="col-md-6 container-fluid">
 
-                            <div class="thumbnail" style="height:35em; border-radius:0; ">
-                                <div class="row wordwrap" style="height:28em; margin-bottom:2em; overflow:hidden;">
+                            <div class="thumbnail" style="height:40em; border-radius:0; ">
+                                <div class="row wordwrap" style="height:33em; margin-bottom:2em; overflow:hidden;">
                                     <img src=@Url.Content(item.MediaURL) class="img-responsive" alt="" style="height:40%;">
                                     <div class="caption">
-                                        <h3 style="padding-bottom:0; padding-top:0; text-align:center">@item.Title</h3>
+                                        <h4 style="padding-bottom:0; padding-top:0; text-align:center">@item.Title</h4>
                                         <h6 style="padding-top:0; margin-top:0; text-align:center">@item.Created.ToString("MMM dd yyyy")</h6>
                                         <hr />
                                         <p style="margin:20px;">@Html.Raw(item.Body)</p>
@@ -106,7 +106,7 @@
                     }
                 </div>
                 <div class="row">
-                   @* @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
+                   @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
                 </div>
             </div>
             @Html.Partial("SideBar")

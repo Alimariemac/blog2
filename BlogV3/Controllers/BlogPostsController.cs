@@ -9,51 +9,62 @@ using System.Web.Mvc;
 using BlogV3.Models;
 using PagedList;
 using PagedList.Mvc;
+using System.IO;
+using BlogV3.helpers;
 
 namespace BlogV3.Controllers
 {
+    [RequireHttps]
     public class BlogPostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private ImageUploadValidator validator = new ImageUploadValidator();
         // GET: BlogPosts
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string searchStr)
         {
+            ViewBag.Search = searchStr;
+            var blogList = IndexSearch(searchStr);
 
-            int pageSize = 4;
+            int pageSize = 5; // the number of posts you want to display per page
             int pageNumber = (page ?? 1);
-            //Allows to change the order later (AsQueryable)   
-            return View(db.BlogPosts.AsQueryable().OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize));
 
+            return View(blogList.ToPagedList(pageNumber, pageSize));
         }
 
-        [HttpPost]
-        public ActionResult Index(int? page, string findtext)
-        {
-            if (findtext == null)
-            {
-                int pageSize = 3;
-                int pageNumber = (page ?? 1);
 
-                return View(db.BlogPosts.OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize));
+
+        [HttpPost]
+        public IQueryable<BlogPost> IndexSearch(string searchStr)
+        {
+            IQueryable<BlogPost> result = null;
+            if (searchStr != null)
+            {
+                result = db.Posts.AsQueryable();
+                result = result.Where(p => p.Title.Contains(searchStr) ||
+                                      p.Body.Contains(searchStr) ||
+                                       p.Comments.Any(c => c.Body.Contains(searchStr) ||
+                                                                        c.Author.FirstName.Contains(searchStr) ||
+                                                                                                                   c.Author.LastName.Contains(searchStr) ||
+                                                                                                                   c.Author.DisplayName.Contains(searchStr) ||
+                                                                                                                   c.Author.Email.Contains(searchStr)));
             }
             else
             {
-                ViewBag.Query = findtext;
-                var t = db.BlogPosts.Where(p => p.Title.Contains(findtext) || findtext == "" || findtext == null ||
-              p.Body.Contains(findtext) || p.Comments.Any(c => c.Body.Contains(findtext) || c.Author.DisplayName.Contains(findtext)));
-                return View(t.OrderByDescending(p => p.Created).ToPagedList(page ?? 1, 3));
+                result = db.Posts.AsQueryable();
             }
+
+            return result.OrderByDescending(p => p.Created);
         }
 
+
         // GET: BlogPosts/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string Slug)
         {
-            if (id == null)
+            if (String.IsNullOrWhiteSpace(Slug))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogPost blogPost = db.BlogPosts.Find(id);
+            BlogPost blogPost = db.Posts.FirstOrDefault(p => p.Slug == Slug);
             if (blogPost == null)
             {
                 return HttpNotFound();
@@ -62,6 +73,7 @@ namespace BlogV3.Controllers
         }
 
         // GET: BlogPosts/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -70,13 +82,39 @@ namespace BlogV3.Controllers
         // POST: BlogPosts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Created,Updated,Title,Slug,Body,MediaURL,Published")] BlogPost blogPost)
+        public ActionResult Create([Bind(Include = "Id,Title,Body,MediaURL,Published")] BlogPost blogPost, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
-                db.BlogPosts.Add(blogPost);
+                var Slug = StringUtilities.URLFriendly(blogPost.Title);
+                if (String.IsNullOrWhiteSpace(Slug))
+                {
+                    ModelState.AddModelError("Title", "Invalid title");
+                    return View(blogPost);
+                }
+                if (String.IsNullOrWhiteSpace(blogPost.Body))
+                {
+                    ModelState.AddModelError("Body", "Please write a post!");
+                    return View(blogPost);
+                }
+                if (db.Posts.Any(p => p.Slug == Slug))
+                {
+                    ModelState.AddModelError("Title", "The title must be unique");
+                    return View(blogPost);
+                }
+                if (validator.IsWebFriendlyImage(Image))
+                {
+                    var fileName = Path.GetFileName(Image.FileName);
+                    Image.SaveAs(Path.Combine(Server.MapPath("~/Images/Uploads/"), fileName));
+                    blogPost.MediaURL = "~/Images/Uploads/" + fileName;
+                }
+
+                blogPost.Slug = Slug;
+                blogPost.Created = DateTimeOffset.Now;
+                db.Posts.Add(blogPost);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -84,14 +122,16 @@ namespace BlogV3.Controllers
             return View(blogPost);
         }
 
+
         // GET: BlogPosts/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogPost blogPost = db.BlogPosts.Find(id);
+            BlogPost blogPost = db.Posts.Find(id);
             if (blogPost == null)
             {
                 return HttpNotFound();
@@ -102,12 +142,28 @@ namespace BlogV3.Controllers
         // POST: BlogPosts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Created,Updated,Title,Slug,Body,MediaURL,Published")] BlogPost blogPost)
+        public ActionResult Edit([Bind(Include = "Id,Created,Updated,Title,Slug,Body,MediaURL,Published")] BlogPost blogPost, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
+                var Slug = StringUtilities.URLFriendly(blogPost.Title);
+                if (String.IsNullOrWhiteSpace(Slug))
+                {
+                    ModelState.AddModelError("Title", "Invalid title");
+                    return View(blogPost);
+                }
+                if (validator.IsWebFriendlyImage(Image))
+                {
+                    var fileName = Path.GetFileName(Image.FileName);
+                    Image.SaveAs(Path.Combine(Server.MapPath("~/Images/Uploads/"), fileName));
+                    blogPost.MediaURL = "~/Images/Uploads/" + fileName;
+                }
+
+                blogPost.Slug = Slug;
+                blogPost.Updated = DateTimeOffset.Now;
                 db.Entry(blogPost).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -116,13 +172,14 @@ namespace BlogV3.Controllers
         }
 
         // GET: BlogPosts/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogPost blogPost = db.BlogPosts.Find(id);
+            BlogPost blogPost = db.Posts.Find(id);
             if (blogPost == null)
             {
                 return HttpNotFound();
@@ -131,12 +188,13 @@ namespace BlogV3.Controllers
         }
 
         // POST: BlogPosts/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BlogPost blogPost = db.BlogPosts.Find(id);
-            db.BlogPosts.Remove(blogPost);
+            BlogPost blogPost = db.Posts.Find(id);
+            db.Posts.Remove(blogPost);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

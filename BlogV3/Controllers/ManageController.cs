@@ -7,9 +7,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BlogV3.Models;
+using static BlogV3.EmailService;
 
 namespace BlogV3.Controllers
 {
+    [RequireHttps]
     [Authorize]
     public class ManageController : Controller
     {

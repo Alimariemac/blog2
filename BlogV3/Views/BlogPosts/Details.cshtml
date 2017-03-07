@@ -124,7 +124,7 @@
                                 <br>
                                 -@comment.Created.ToString("MMM dd yyyy")
                             </p>
-                            @if (User.IsInRole("Admin"))
+                            @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                             {
                                 using (Html.BeginForm("Delete", "Comments", new { id = comment.Id }, FormMethod.Post))
                                 {

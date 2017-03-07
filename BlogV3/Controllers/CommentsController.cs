@@ -7,21 +7,30 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BlogV3.Models;
+using Microsoft.AspNet.Identity;
 
 namespace BlogV3.Controllers
 {
+    [RequireHttps]
     public class CommentsController : Controller
     {
+        
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Comments
         public ActionResult Index()
         {
+
             var comments = db.Comments.Include(c => c.Author).Include(c => c.Post);
-            return View(comments.ToList());
+            if (comments != null)
+            {
+                return View(comments.ToList());
+            }
+            else { return null; }
         }
 
         // GET: Comments/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,33 +46,43 @@ namespace BlogV3.Controllers
         }
 
         // GET: Comments/Create
+        [Authorize]
         public ActionResult Create()
         {
-            ViewBag.AuthorId = new SelectList(db.ApplicationUsers, "Id", "FirstName");
-            ViewBag.PostId = new SelectList(db.BlogPosts, "Id", "Title");
-            return View();
+            //ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName");
+            ViewBag.PostId = new SelectList(db.Posts, "Id", "Title");
+            return RedirectToAction("BlogPosts", "Index");
         }
 
         // POST: Comments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,PostId,AuthorId,Body,Created,Updated,UpdateReason")] Comment comment)
+        public ActionResult Create([Bind(Include = "Id,PostId,AuthorId,Body,Created,Updated,UpdateReason")] Comment comment, BlogPost blogPost)
         {
             if (ModelState.IsValid)
             {
+                var user = db.Users.Find(User.Identity.GetUserId());
+                comment.AuthorId = user.Id;
+                comment.Created = DateTimeOffset.Now;
                 db.Comments.Add(comment);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
             }
 
-            ViewBag.AuthorId = new SelectList(db.ApplicationUsers, "Id", "FirstName", comment.AuthorId);
-            ViewBag.PostId = new SelectList(db.BlogPosts, "Id", "Title", comment.PostId);
-            return View(comment);
+            //ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);
+            ViewBag.PostId = new SelectList(db.Posts, "Id", "Title", comment.PostId);
+            return Redirect(Request.UrlReferrer.ToString());
+
+
         }
 
         // GET: Comments/Edit/5
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Moderator")]
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -75,14 +94,18 @@ namespace BlogV3.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AuthorId = new SelectList(db.ApplicationUsers, "Id", "FirstName", comment.AuthorId);
-            ViewBag.PostId = new SelectList(db.BlogPosts, "Id", "Title", comment.PostId);
+
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);
+            ViewBag.PostId = new SelectList(db.Posts, "Id", "Title", comment.PostId);
             return View(comment);
         }
 
         // POST: Comments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Moderator")]
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,PostId,AuthorId,Body,Created,Updated,UpdateReason")] Comment comment)
@@ -93,12 +116,14 @@ namespace BlogV3.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AuthorId = new SelectList(db.ApplicationUsers, "Id", "FirstName", comment.AuthorId);
-            ViewBag.PostId = new SelectList(db.BlogPosts, "Id", "Title", comment.PostId);
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);
+            ViewBag.PostId = new SelectList(db.Posts, "Id", "Title", comment.PostId);
             return View(comment);
         }
-
         // GET: Comments/Delete/5
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Moderator")]
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -114,6 +139,7 @@ namespace BlogV3.Controllers
         }
 
         // POST: Comments/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -121,7 +147,7 @@ namespace BlogV3.Controllers
             Comment comment = db.Comments.Find(id);
             db.Comments.Remove(comment);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         protected override void Dispose(bool disposing)

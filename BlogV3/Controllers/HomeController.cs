@@ -6,10 +6,12 @@ using System.Web.Mvc;
 
 namespace BlogV3.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
+            ViewBag.HideTitle = true;
             return View();
         }
 

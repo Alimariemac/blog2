@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44381</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -180,9 +180,11 @@
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="helpers\StringUtilities.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogPost.cs" />
@@ -202,8 +204,52 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\aliciacolor.jpg" />
+    <Content Include="Images\brand2.png" />
+    <Content Include="Images\design\chocoad.jpg" />
+    <Content Include="Images\design\chocolatesummercamp.svg" />
+    <Content Include="Images\design\HP-03.svg" />
+    <Content Include="Images\design\HP-04.svg" />
+    <Content Include="Images\design\HP-05.svg" />
+    <Content Include="Images\design\HP-06.svg" />
+    <Content Include="Images\design\HP-07.svg" />
+    <Content Include="Images\design\JL2.svg" />
+    <Content Include="Images\design\JL3-01.svg" />
+    <Content Include="Images\design\JL4.svg" />
+    <Content Include="Images\design\JL5-01.svg" />
+    <Content Include="Images\floral.jpg" />
+    <Content Include="Images\photo12.jpg" />
+    <Content Include="Images\photo\photo1.jpg" />
+    <Content Include="Images\photo\photo10.jpg" />
+    <Content Include="Images\photo\photo11.jpg" />
+    <Content Include="Images\photo\photo12.jpg" />
+    <Content Include="Images\photo\photo2.jpg" />
+    <Content Include="Images\photo\photo3.jpg" />
+    <Content Include="Images\photo\photo4.jpg" />
+    <Content Include="Images\photo\photo5.jpg" />
+    <Content Include="Images\photo\photo6.jpg" />
+    <Content Include="Images\photo\photo7.jpg" />
+    <Content Include="Images\photo\photo8.jpg" />
+    <Content Include="Images\photo\photo9.jpg" />
+    <Content Include="Images\profilepic.jpg" />
+    <Content Include="Images\slide1.jpg" />
+    <Content Include="Images\slide2.jpg" />
+    <Content Include="Images\slide3.jpg" />
+    <Content Include="Images\Uploads\20141223-071658-IMG_2828.JPG" />
+    <Content Include="Images\Uploads\20160121-140011-image5.JPG" />
+    <Content Include="Images\Uploads\20160122-060650-IMG_1161.JPG" />
+    <Content Include="Images\Uploads\20161013-110010-DSCF4244.JPG" />
+    <Content Include="Images\Uploads\20161116-232531-DSCF4245.JPG" />
+    <Content Include="Images\Uploads\20170105-003225-DSCF4432.JPG" />
+    <Content Include="Images\Uploads\backpack.jpg" />
+    <Content Include="Images\Uploads\backpack3.jpg" />
+    <Content Include="Images\Uploads\luggage.jpg" />
+    <Content Include="Images\Uploads\wolfbag.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Private.config" />
+    <Content Include="AliciaMacCaraResume.pdf" />
+    <None Include="Properties\PublishProfiles\aliciamaccara - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -463,7 +509,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53331</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:53331/</IISUrl>
+          <IISUrl>https://localhost:44381/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

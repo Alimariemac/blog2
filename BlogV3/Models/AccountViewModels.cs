@@ -8,6 +8,10 @@ namespace BlogV3.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        [Required]
+        [StringLength(100)]
+        [Display(Name = "Display Name")]
+        public string DisplayName { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -68,6 +72,21 @@ namespace BlogV3.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        [Display(Name = "Display Name")]
+        public string DisplayName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 144 144" style="enable-background:new 0 0 144 144;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;stroke:#000000;stroke-width:2;stroke-miterlimit:10;}
+	.st1{fill:#ED1C24;stroke:#BE1E2D;stroke-miterlimit:10;}
+	.st2{font-family:'FatFrank-Heavy';}
+	.st3{font-size:12px;}
+</style>
+<rect x="39.2" y="22.4" class="st0" width="23.9" height="44.3"/>
+<rect x="63.1" y="22.4" class="st1" width="23.9" height="44.3"/>
+<rect x="87" y="22.4" class="st1" width="23.9" height="44.3"/>
+<rect x="39.2" y="66.7" class="st1" width="23.9" height="44.3"/>
+<rect x="63.1" y="66.7" class="st1" width="23.9" height="44.3"/>
+<rect x="87" y="66.7" class="st1" width="23.9" height="44.3"/>
+<g>
+	<path class="st0" d="M60.4,66.7l0.1-44.3h26.8L87.2,111h-48V66.7H60.4z"/>
+</g>
+<g>
+	<path class="st0" d="M110.9,22.4V111H87.6V22.4H110.9z"/>
+</g>
+<text transform="matrix(1 0 0 1 -12.5534 -7.426)" class="st2 st3">FatFrankHeavy</text>
+</svg>
