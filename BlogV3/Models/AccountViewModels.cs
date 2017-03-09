@@ -74,17 +74,14 @@ namespace BlogV3.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100)]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Required]
-        [StringLength(100)]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [Required]
-        [StringLength(100)]
         [Display(Name = "Display Name")]
         public string DisplayName { get; set; }
 

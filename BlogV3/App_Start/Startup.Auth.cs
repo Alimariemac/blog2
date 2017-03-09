@@ -51,9 +51,9 @@ namespace BlogV3
             //    clientId: "",
             //    clientSecret: "");
 
-           // app.UseTwitterAuthentication(
-              // consumerKey: "M6tpJ47bjvZNUT28rlg4uncK1",
-              // consumerSecret: "kLrqniM13mIkyx0lcBg60ywd9Z16xe2kEGnii6X9YdgYw8iNo8");
+             //app.UseTwitterAuthentication(
+             //consumerKey: "M6tpJ47bjvZNUT28rlg4uncK1",
+            //consumerSecret: "kLrqniM13mIkyx0lcBg60ywd9Z16xe2kEGnii6X9YdgYw8iNo8");
 
             app.UseFacebookAuthentication(
                 appId: "1228139083971369",
